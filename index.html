@@ -125,28 +125,26 @@
     //加入聆聽器
     emailInput.addEventListener('input',toggleLoginButton);
     passwd.addEventListener('input',toggleLoginButton);
-    // 添加点击事件监听器
+    
 loginButton.addEventListener('click', function(event) {
-    // 如果电子邮件或密码输入框为空，则阻止默认行为
+    
     if (emailInput.value.trim() === '' || passwdInput.value.trim() === '') {
-        event.preventDefault(); // 阻止默认行为，即禁止提交表单
+        event.preventDefault(); 
     }
 });
 
-// 当输入框有输入时切换登录按钮状态
+
 function toggleLoginButton() {
-    // 如果电子邮件和密码输入框都有值，则启用登录按钮，并修改其样式
+    
     if (emailInput.value.trim() !== '' && passwdInput.value.trim() !== '') {
         loginButton.removeAttribute('disabled');
         loginButton.classList.add('active');
-    } else {
-        // 如果任何一个输入框为空，则禁用登录按钮，并还原其样式
+    } else {      
         loginButton.setAttribute('disabled', true);
         loginButton.classList.remove('active');
     }
 }
-
-   
+ 
 
 </script>
 
