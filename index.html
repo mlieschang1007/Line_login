@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Login</title>
+    <style>    
+    div span a{
+        color:rgb(54, 65, 65);
+        /*預設不設置底線*/
+        text-decoration: none;
+    }
+    /*當游標指到或按下去時要顯示底線*/
+    div span a:hover,div span a:active {
+        text-decoration: underline;
+    }
+    
+    #forget_email {
+        color:rgb(14, 27, 174);
+        text-decoration: none;
+    }
+    #forget_email:hover,#forget_email:active{
+        text-decoration: underline;
+    }
+    body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .form{
+        width:200px;
+        
+        padding: 100px;
+        border:1px solid #ccc;
+        margin-top: -20px;
+    }
+    .footer {
+        position: fixed;
+        bottom:10px;
+        right: 10px;
+        display: flex;
+        flex-direction: row;/*水平排列*/
+        }
+    .footer span + span{
+        margin-left: 10px;
+    }
+    #line_logo {
+        max-width: 100px;
+        height:auto;
+        margin-right: 10px;
+        margin-bottom: 150px;
+        margin-left: 30px;
+        position: relative;
+        top:calc(50% - 50px)
+    }
+    #email,#passwd{
+        border:0;
+        border-bottom: 1px solid #a19e9e;
+        padding:5px;
+        outline: none;/*移除默認的輪廓*/
+        font-size: 16px;
+        margin-top:10px;
+    }
+    #login_button{
+        width:100%;
+        padding: 8px;
+        border: none;
+        background-color: #ccc; /* 初始颜色 */
+        cursor: pointer;/*手的形狀，告知可以點擊按鈕*/
+        
+    }
+    
+    
+
+    </style>
+</head>
+<body>
+    <div class="form">
+        <form id="email_login"  action="#" method="post">
+            <img src="./imgs/line.png" id="line_logo" alt="Line_Logo">
+            <div>
+            <label for="email"></label>
+            <input type="text" id="email" name="email" placeholder="電子郵件帳號"><br>
+            </div>
+            
+            <div>
+            <label for="passwd"></label>
+            <input type="text" id="passwd" name="passwd" placeholder="密碼">
+            </div>
+            <br>
+
+            <div>
+                <button type="submit" id="login_button">登入</button>
+            </div>
+
+
+            <p class="under_line">使用其他方式登入</p>
+            <div>
+                <button type="submit" onclick="LoginByQRCODE()">使用行動條碼登入</button>
+            </div>
+            <br>
+
+            <a id="forget_email"  href="https://help.line.me/line/win/?contentId=10002664&lang=zh_TW">忘記電子郵件帳號或密碼?</a>
+        </form>
+    <div>
+                <div class="footer">
+                <span><a href="https://www.lycorp.co.jp/zh-TW/company/privacypolicy/">隱私權政策</a></span>
+                <span><a href="https://terms.line.me/line_terms?lang=zh_TW">服務條款</a></span>
+                </div>
+            
+    </div>
+    
+</body>
+<script>
+    function LoginByQRCODE(){
+        var url = 'qrcode.html';
+        window.open(url,'_blank');
+    }
+    const emailInput = document.getElementById('email');
+    const passwdInput = document.getElementById('passwd');
+    const loginButton = document.getElementById('login_button')
+
+    //加入聆聽器
+    emailInput.addEventListener('input',toggleLoginButton);
+    passwd.addEventListener('input',toggleLoginButton);
+    // 添加点击事件监听器
+loginButton.addEventListener('click', function(event) {
+    // 如果电子邮件或密码输入框为空，则阻止默认行为
+    if (emailInput.value.trim() === '' || passwdInput.value.trim() === '') {
+        event.preventDefault(); // 阻止默认行为，即禁止提交表单
+    }
+});
+
+// 当输入框有输入时切换登录按钮状态
+function toggleLoginButton() {
+    // 如果电子邮件和密码输入框都有值，则启用登录按钮，并修改其样式
+    if (emailInput.value.trim() !== '' && passwdInput.value.trim() !== '') {
+        loginButton.removeAttribute('disabled');
+        loginButton.classList.add('active');
+    } else {
+        // 如果任何一个输入框为空，则禁用登录按钮，并还原其样式
+        loginButton.setAttribute('disabled', true);
+        loginButton.classList.remove('active');
+    }
+}
+
+   
+
+</script>
+
+</html>
